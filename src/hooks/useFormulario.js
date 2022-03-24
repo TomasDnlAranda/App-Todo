@@ -15,5 +15,6 @@ export const useFormulario = (initialState = {}) => {
 	const reset = () => {
 		setInputs(initialState);
 	};
+
 	return [inputs, handleChange, reset];
 };
