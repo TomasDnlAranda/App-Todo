@@ -1,16 +1,22 @@
 import React from 'react';
 
-const CardTask = () => {
+const CardTask = ({ item, handleEdit, handleDelete }) => {
+	const { text, description, state, check, id } = item;
 	return (
-		<div class="card w-75 mt-3 mx-auto">
+		<div className="card w-75 mt-3 mx-auto">
 			<div className="card-body">
-				<h4 className="card-title d-flex justify-content-between">
-					<span>La Tarea</span>
-					<span class="badge rounded-pill bg-primary">Prioridad</span>
+				<h4 className="card-title d-flex justify-content-between fs-4">
+					<span>{text}</span>
+					{check ? <span className="badge rounded-pill bg-primary fs-6">Prioridad</span> : null}
 				</h4>
-				<p className="card-text">La descripcion</p>
-				<button className="btn btn-warning">Editar</button>
-				<button className="btn btn-danger ms-2">Eliminar</button>
+				<p className="bg-dark badge">{state ? 'Finalizado' : 'Pendiente'}</p>
+				<p className="card-text">{description}</p>
+				<button className="btn btn-warning" onClick={() => handleEdit(id)}>
+					Editar
+				</button>
+				<button className="btn btn-danger ms-2" onClick={() => handleDelete(id)}>
+					Eliminar
+				</button>
 			</div>
 		</div>
 	);

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Swal from 'sweetalert2';
+import { useFormulario } from '../hooks/useFormulario';
 
 const Formulario = ({ dataTask }) => {
 	const initialState = {
@@ -9,18 +10,9 @@ const Formulario = ({ dataTask }) => {
 		check: false,
 	};
 
-	const [task, setTask] = useState(initialState);
+	const [inputs, handleChange, reset] = useFormulario(initialState);
 
-	const { text, description, state, check } = task;
-
-	const handleChange = (e) => {
-		const { name, value, type, checked } = e.target;
-
-		setTask((old) => ({
-			...old,
-			[name]: type === 'checkbox' ? checked : value,
-		}));
-	};
+	const { text, description, state, check } = inputs;
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -51,7 +43,7 @@ const Formulario = ({ dataTask }) => {
 		});
 
 		// cuando se envien los datos, reiniciar los campos
-		setTask(initialState);
+		reset();
 	};
 
 	const alertFalse = (e, n, type, icon) => {
@@ -66,7 +58,7 @@ const Formulario = ({ dataTask }) => {
 
 	return (
 		<>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} className="mb-5">
 				<input
 					name="text"
 					className="form-control mb-2"
@@ -92,7 +84,7 @@ const Formulario = ({ dataTask }) => {
 						type="checkbox"
 						id="flexCheckChecked"
 						onChange={handleChange}
-						value={check}
+						checked={check}
 					/>
 					<label className="form-check-label text-white" htmlFor="flexCheckChecked">
 						Dar Prioridad
