@@ -10,6 +10,7 @@ technical skills applied in the project:
 * JS
 * JS VANILLA
 * REACT JS
+* LOCAL STORAGE
 * CREATE REACT APP
 * BOOTSTRAP 5
 * RESPONSIVE DESIGN 100%
