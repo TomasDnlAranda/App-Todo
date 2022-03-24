@@ -11,9 +11,9 @@ const CardTask = ({ item, handleEdit, handleDelete }) => {
 					{check ? <span className="badge rounded-pill bg-primary fs-6">Prioridad</span> : null}
 				</h4>
 				{state ? (
-					<p className="bg-warning badge text-dark">Pendiente</p>
-				) : (
 					<p className="bg-success badge">Finalizado</p>
+				) : (
+					<p className="bg-warning badge text-dark">Pendiente</p>
 				)}
 				<p className="card-text">{description}</p>
 				<button className="btn btn-warning" onClick={() => handleEdit(id)}>
