@@ -4,9 +4,10 @@ import Formulario from './components/Formulario';
 
 function App() {
 	const [tasks, setTasks] = useState([]);
+
 	const dataTask = (task) => {
-		// pushea la task dentro del arr vacio tasks
-		setTasks((old) => [...old, tasks.sort(task.check)]);
+		// pushea la task dentro del arr vacio tasks y cambio el orden de los valores
+		setTasks((old) => (task.check === true ? [task, ...old] : [...old, task]));
 	};
 
 	const handleDelete = (id) => {
@@ -16,7 +17,6 @@ function App() {
 
 	const handleEdit = (id) => {
 		const editTask = tasks.map((item) => (item.id === id ? { ...item, state: !item.state } : item));
-
 		setTasks(editTask);
 	};
 

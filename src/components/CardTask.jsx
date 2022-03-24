@@ -2,6 +2,7 @@ import React from 'react';
 
 const CardTask = ({ item, handleEdit, handleDelete }) => {
 	const { text, description, state, check, id } = item;
+
 	return (
 		<div className="card w-75 mt-3 mx-auto">
 			<div className="card-body">
@@ -9,7 +10,11 @@ const CardTask = ({ item, handleEdit, handleDelete }) => {
 					<span>{text}</span>
 					{check ? <span className="badge rounded-pill bg-primary fs-6">Prioridad</span> : null}
 				</h4>
-				<p className="bg-dark badge">{state ? 'Finalizado' : 'Pendiente'}</p>
+				{state ? (
+					<p className="bg-warning badge text-dark">Pendiente</p>
+				) : (
+					<p className="bg-success badge">Finalizado</p>
+				)}
 				<p className="card-text">{description}</p>
 				<button className="btn btn-warning" onClick={() => handleEdit(id)}>
 					Editar
